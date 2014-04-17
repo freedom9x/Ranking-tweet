@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,7 +50,20 @@ public class Main {
 		
 		System.out.println("-------------------");
 		//ReadFile.GetTweet(tweets, 200, "data/tmp000b79f30476825915c9469489d19926569670dc.txt");
-		ReadFile.CreateDataset("data", "dataset");		
+		//ReadFile.CreateDataset("data/ipad", "dataset");
+		
+		File folder1 = new File("data");
+		
+		File[] listOfFiles = folder1.listFiles();
+		for (File file : listOfFiles) {
+			String path_data = "data/"+file.getName();
+			String path_dataset = "dataset/"+file.getName();
+			File folder_dataset = new File(path_dataset);
+			folder_dataset.mkdir();
+			System.out.println("-------------"+path_dataset+"-------------------------");
+			ReadFile.CreateDataset(path_data, path_dataset);
+			
+		}
 	}
 
 }

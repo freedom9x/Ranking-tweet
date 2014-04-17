@@ -112,8 +112,11 @@ public class ReadFile {
 	{
 		File folder = new File(path_data);
 		File[] listOfFiles = folder.listFiles();
+		int i = 0;
+		int total = listOfFiles.length;
 		int dem = 0;
 		for (File file : listOfFiles) {
+			i++;
 			if(file.isFile()&&file.length()>1024)
 			{
 				dem = dem +1;
@@ -127,9 +130,11 @@ public class ReadFile {
 					pw.println(string);		
 				}
 				pw.close();
-				System.out.println("done\t "+file.getName());
+				System.out.println(i+"\\"+total+ "\t"+ file.getName()+"\tdone");
 			}				
 		}
+		
+		
 		
 	}
 }
