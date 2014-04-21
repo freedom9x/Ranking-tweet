@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 
 
 public class Tweet {
@@ -94,6 +97,26 @@ public class Tweet {
 		}
 		content= content.toLowerCase();
 		this.content = this.content.replaceAll("( )+", " ");
+		
+	}
+	public static Tweet GetTweetFromID(long id, Tweet[] tweets)
+	{
+		for (Tweet tweet : tweets) {
+			if(tweet.ID == id) return tweet;
+		}
+		Tweet term = null;
+		return term;
+	}
+	
+	public void Remove1()
+	{
+		String result = "";
+		List<String> list = Arrays.asList(this.content.split(" "));
+		for (String string : list) {
+			if(string.contains("http://")|string.contains("@")) continue;
+			result =result+ string+" ";
+		}
+		this.content = result;
 		
 	}
 }

@@ -60,8 +60,15 @@ public class TFIDF {
     }
    	public static double Agreement(String text1, String text2, Tweet[] tweets, int N) throws IOException
    	{
+//   		tweets[i].Remove1();
+//		tweets[i].rmv_stopword();
+//		tweets[i].content = tweets[i].content.replace(query, "");//bo tu query
+//		tweets[i].content = tweets[i].content.replaceAll("( )+", " ");
+		if(text1.isEmpty()|text1.isEmpty()) return 0.0;
+		
    		double ag_score=0.0;
    		List<String> same_term = Get_same(text1, text2);
+   		if(same_term.isEmpty()) return 0.0;
    		for (String term : same_term) {
 			ag_score+=  TF_term(term, text1) + TF_term(term, text2) + 
 					IDF_term(term, tweets, N)+ Tagger.Tag(term);

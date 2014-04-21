@@ -11,23 +11,26 @@ public class Main {
 	 * @param args
 	 * @throws IOException 
 	 */
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
+		int N = 200;
+		double[][] Agreement_Graph = new double[N+1][N];
 		Tweet[] tweets = new Tweet[200];
+	//	Tweet[][] Agreement_Graph = new Tweet[N+1][N];
 		String query;
 		String topic;
-		int N = 200;
+		
 		//6tweet test deu lien quan den cau query amazaon
-		query = "iphone 5s";
-		topic = Query.TopicDectection(query);
+		query = "nexus 5";
+	//	topic = Query.TopicDectection(query);
 		try {
-			tweets=ReadFile.GetNtweet(N, topic);
+			tweets=ReadFile.GetNtweet(N, query);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println(e.toString());
 		}
-		
+	
 //		tweets[0] = new Tweet("@stellargirl I love my Kindle2. Not that the DX is cool, but the 2 is fantastic in its own right.");
 //		tweets[1] = new Tweet("Reading my kindle2...  Love it... Lee childs is good read.");
 //		tweets[2] = new Tweet("Ok, first assesment of the #kindle2 ...it fucking rocks!!!");
@@ -37,16 +40,32 @@ public class Main {
 //		
 		for(int i = 0; i<200; i++)
 		{
+			tweets[i].Remove1();
 			tweets[i].rmv_stopword();
 			tweets[i].content = tweets[i].content.replace(query, "");//bo tu query
 			tweets[i].content = tweets[i].content.replaceAll("( )+", " ");
-			System.out.println(tweets[i].content);
+		//	System.out.println(tweets[i].content);
 			
 		}
-		for (Tweet tweet : tweets) {
-			System.out.println(tweet.ID+"\t"+tweet.content);
+//		for (Tweet tweet : tweets) {
+//			System.out.println(tweet.ID+"\t"+tweet.content);
+//		}
+//		
+        //tinh agreemnet
+		for(int i = 0; i < N - 1; i++)
+		{
+			for(int j = i + 1; j < N; j++)
+			{
+				
+				Agreement_Graph[i][j]=TFIDF.Agreement(tweets[i].content, tweets[j].content, tweets, N);
+					
+				
+			}
+			//System.out.println();
+				
 		}
-
+		
+		
 //		System.out.println(TFIDF.IDF_term("love", tweets, 6));
 //		List<String> term = TFIDF.Get_same(tweets[0].content, tweets[1].content);
 //		for (String string : term) {
