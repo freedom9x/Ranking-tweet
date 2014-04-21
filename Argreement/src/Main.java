@@ -1,4 +1,6 @@
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.ObjectInputStream.GetField;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -47,24 +49,28 @@ public class Main {
 		//	System.out.println(tweets[i].content);
 			
 		}
+		ReadFile.WriteResult(tweets, "result/200tweets.txt");
 //		for (Tweet tweet : tweets) {
 //			System.out.println(tweet.ID+"\t"+tweet.content);
 //		}
 //		
+		System.out.println("-------------------");	
+		PrintWriter pw = new PrintWriter(new FileWriter("result/AGgraph.txt"));
         //tinh agreemnet
-		for(int i = 0; i < N - 1; i++)
+		for(int i = 0; i < N-1; i++)
 		{
-			for(int j = i + 1; j < N; j++)
-			{
+		for(int j = i + 1; j < N; j++)
+		{
 				
 				Agreement_Graph[i][j]=TFIDF.Agreement(tweets[i].content, tweets[j].content, tweets, N);
-					
-				
-			}
-			//System.out.println();
+				System.out.print(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");
+				pw.println(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");
+		}
+			System.out.println();
 				
 		}
-		
+		pw.close();
+		System.out.println("-------------------");	
 		
 //		System.out.println(TFIDF.IDF_term("love", tweets, 6));
 //		List<String> term = TFIDF.Get_same(tweets[0].content, tweets[1].content);
@@ -77,7 +83,7 @@ public class Main {
 //		NumberFormat formatter = new DecimalFormat("#0.00");
 //		System.out.println(formatter.format(ag));
 		
-		System.out.println("-------------------");	
+		
 
 	}
 

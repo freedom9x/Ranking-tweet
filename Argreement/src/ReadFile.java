@@ -96,18 +96,22 @@ public class ReadFile {
 		
 		return result;
 	}
-	public static void WriteResult(String line, String filename)
+	public static void WriteResult(Tweet[] tweets, String filename)
 	{
 	try {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
 		String newLine = System.getProperty("line.separator");
-		writer.write(line+newLine);
+		int i = 0;
+		for (Tweet tweet : tweets) {	
+			writer.write(i+"  \""+tweet.content+"\""+newLine);
+			i++;
+		}
+		
 		writer.close();
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-	}
-	
+	}	
 	}
 	public static void CreateDataset(String path_data, String path_dataset) throws IOException
 	{
