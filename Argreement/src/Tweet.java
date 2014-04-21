@@ -2,7 +2,7 @@
 
 public class Tweet {
 	//9 features
-	int ID;
+	long ID;
 	String user_name;
 	String content;
 	String img_url;
@@ -47,9 +47,10 @@ public class Tweet {
 			}
 		}
 	}*/
-	public Tweet(String text_info, int num_feature)
+	public Tweet(String content, long id)
 	{
-		
+		this.content = content;
+		this.ID = id;
 	}
 
 	public Tweet(String content) {
@@ -70,19 +71,6 @@ public class Tweet {
 		this.content = this.content.replace(":", " ");
 		this.content = this.content.replace("!", " ");
 		this.content = this.content.replace("...", " ");
-		
-//		this.content = this.content.replace("?", "");
-//		this.content = this.content.replace(",", "");
-//		this.content = this.content.replace(".", "");
-//		this.content = this.content.replace(":", "");
-//		this.content = this.content.replace("%", "");
-//		this.content = this.content.replace("+", "");
-//		this.content = this.content.replace("=", "");
-//		this.content = this.content.replace("/", "");
-//		this.content = this.content.replace("\\", "");
-//		this.content = this.content.replace("*", "");
-//		this.content = this.content.replace("[", "");
-//		this.content = this.content.replace("]", "");	
 		this.content = this.content.trim().replaceAll("\\s+", " ");
 		//remove
 //		for( int i = 0; i<this.content.length(); i++)

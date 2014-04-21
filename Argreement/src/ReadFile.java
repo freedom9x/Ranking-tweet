@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -132,9 +133,54 @@ public class ReadFile {
 				pw.close();
 				System.out.println(i+"\\"+total+ "\t"+path_dataset+"/"+ file.getName()+"\tdone");
 			}				
+		}	
+	}
+	//doc 200 tweet
+	public static Tweet[] GetNtweet (int N, String querry) throws IOException
+	{
+		Tweet[] tweets = new Tweet[N];
+		String topic = Query.TopicDectection(querry);
+		int i = 0;
+		File folder = new File("dataset/"+topic);
+		File[] listOfFiles = folder.listFiles();
+		for (File file : listOfFiles) {
+			if(file.length()==0) continue;
+			System.out.println("-------------------"+file.getName());
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String term;
+			if(i==N) return tweets;
+			while((term = reader.readLine())!=null)
+			{
+				if(i==N) return tweets;
+				long id;
+				String content ="";
+				String[] parts = term.split("  ");
+				id = Long.parseLong(parts[1]);
+				for(int j = 2 ; j<parts.length; j++)
+				{
+					parts[j].replace("\"", "");
+					content += parts[j];
+				}
+				tweets[i] = new Tweet(content, id);
+				i++;
+			}
+			reader.close();
 		}
+		return tweets;
+	}
+	public static void Create() throws IOException
+	{
+		File folder1 = new File("data");
 		
-		
-		
+		File[] listOfFiles = folder1.listFiles();
+		for (File file : listOfFiles) {
+			String path_data = "data/"+file.getName();
+			String path_dataset = "dataset/"+file.getName();
+			File folder_dataset = new File(path_dataset);
+			folder_dataset.mkdir();
+			System.out.println("-------------"+path_dataset+"-------------------------");
+			ReadFile.CreateDataset(path_data, path_dataset);
+			
+		}
 	}
 }
