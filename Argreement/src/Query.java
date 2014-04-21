@@ -6,7 +6,7 @@ public class Query {
 	public static String TopicDectection(String querry){
 		String topic= "";
 		
-		if (querry.contains("ipad")) topic = "iphone_5s";
+		if (querry.contains("ipad")) topic = "ipad";
 		if (querry.contains("iphone 5s")) topic = "iphone_5s";
 		if (querry.contains("kindlefire")) topic = "kindlefire";
 		if (querry.contains("lg g2")) topic = "lg g2";		
