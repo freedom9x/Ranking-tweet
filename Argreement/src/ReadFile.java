@@ -130,7 +130,7 @@ public class ReadFile {
 					pw.println(string);		
 				}
 				pw.close();
-				System.out.println(i+"\\"+total+ "\t"+ file.getName()+"\tdone");
+				System.out.println(i+"\\"+total+ "\t"+path_dataset+"/"+ file.getName()+"\tdone");
 			}				
 		}
 		
