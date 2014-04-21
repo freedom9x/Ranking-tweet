@@ -18,7 +18,7 @@ public class Main {
 		String topic;
 		int N = 200;
 		//6tweet test deu lien quan den cau query amazaon
-		query = "kindlefire";
+		query = "iphone 5s";
 		topic = Query.TopicDectection(query);
 		try {
 			tweets=ReadFile.GetNtweet(N, topic);
