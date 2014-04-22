@@ -55,21 +55,22 @@ public class Main {
 //		}
 //		
 		System.out.println("-------------------");	
-		PrintWriter pw = new PrintWriter(new FileWriter("result/AGgraph.txt"));
+		
         //tinh agreemnet
-		for(int i = 0; i < N-1; i++)
+		for(int i = 13; i < 30-1; i++)
 		{
-		for(int j = i + 1; j < N; j++)
-		{
-				
-				Agreement_Graph[i][j]=TFIDF.Agreement(tweets[i].content, tweets[j].content, tweets, N);
-				System.out.print(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");
-				pw.println(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");
-		}
+			PrintWriter pw = new PrintWriter(new FileWriter("result/AGgraph-.txt"+i+".txt"));
+			for(int j = i + 1; j < 30; j++)
+			{		
+					Agreement_Graph[i][j]=TFIDF.Agreement(tweets[i].content, tweets[j].content, tweets, N);
+					System.out.print(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");					
+					pw.println(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");
+					
+			}
 			System.out.println();
-				
+			pw.close();
 		}
-		pw.close();
+		
 		System.out.println("-------------------");	
 		
 //		System.out.println(TFIDF.IDF_term("love", tweets, 6));
