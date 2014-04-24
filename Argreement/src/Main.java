@@ -33,12 +33,7 @@ public class Main {
 			System.out.println(e.toString());
 		}
 	
-//		tweets[0] = new Tweet("@stellargirl I love my Kindle2. Not that the DX is cool, but the 2 is fantastic in its own right.");
-//		tweets[1] = new Tweet("Reading my kindle2...  Love it... Lee childs is good read.");
-//		tweets[2] = new Tweet("Ok, first assesment of the #kindle2 ...it fucking rocks!!!");
-//		tweets[3] = new Tweet("@kenburbary You'll love your Kindle2. I've had mine for a few months and never looked back. The new big one is huge! No need for remorse! :)");
-//		tweets[4] = new Tweet("@mikefish  Fair enough. But i have the Kindle2 and I think it's perfect  :)");
-//		tweets[5] =  new Tweet("@richardebaker no. it is too big. I'm quite happy with the Kindle2.");
+
 //		
 		for(int i = 0; i<200; i++)
 		{
@@ -57,10 +52,10 @@ public class Main {
 		System.out.println("-------------------");	
 		
         //tinh agreemnet
-		for(int i = 13; i < 30-1; i++)
+		for(int i = 0; i < N-1; i++)
 		{
 			PrintWriter pw = new PrintWriter(new FileWriter("result/AGgraph-.txt"+i+".txt"));
-			for(int j = i + 1; j < 30; j++)
+			for(int j = i + 1; j < N; j++)
 			{		
 					Agreement_Graph[i][j]=TFIDF.Agreement(tweets[i].content, tweets[j].content, tweets, N);
 					System.out.print(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");					
