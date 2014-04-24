@@ -1,0 +1,2 @@
+0  402920700895559680  "google Nexus 4 Battery=47%,Status=discharging Nov 19, 2013 5:05:12 PM #tweetbatt"
+1  402920301614596096  "google Nexus 4 Battery=48%,Status=discharging Nov 19, 2013 5:03:37 PM #tweetbatt"
