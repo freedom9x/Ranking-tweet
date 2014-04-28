@@ -1,10 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.ObjectInputStream.GetField;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.List;
 
 
 public class Main {
@@ -18,11 +14,11 @@ public class Main {
 		int N = 200;
 		double[][] Agreement_Graph = new double[N+1][N];
 		Tweet[] tweets = new Tweet[200];
-	//	Tweet[][] Agreement_Graph = new Tweet[N+1][N];
+
 		String query;
 		String topic;
 		
-		//6tweet test deu lien quan den cau query amazaon
+		
 		query = "nexus 5";
 	//	topic = Query.TopicDectection(query);
 		try {
@@ -34,17 +30,17 @@ public class Main {
 		}
 	
 
-//		
-		for(int i = 0; i<200; i++)
-		{
-			tweets[i].Remove1();
-			tweets[i].rmv_stopword();
-			tweets[i].content = tweets[i].content.replace(query, "");//bo tu query
-			tweets[i].content = tweets[i].content.replaceAll("( )+", " ");
-		//	System.out.println(tweets[i].content);
-			
-		}
-		ReadFile.WriteResult(tweets, "result/200tweets.txt");
+//		remove stop words
+//		for(int i = 0; i<200; i++)
+//		{
+//			tweets[i].Remove1();
+//			tweets[i].rmv_stopword();
+//			tweets[i].content = tweets[i].content.replace(query, "");//bo tu query
+//			tweets[i].content = tweets[i].content.replaceAll("( )+", " ");
+//		//	System.out.println(tweets[i].content);
+//			
+//		}
+		ReadFile.WriteResult(tweets, "result/200tweets.txt", false, query);
 //		for (Tweet tweet : tweets) {
 //			System.out.println(tweet.ID+"\t"+tweet.content);
 //		}
@@ -52,19 +48,19 @@ public class Main {
 		System.out.println("-------------------");	
 		
         //tinh agreemnet
-		for(int i = 0; i < N-1; i++)
-		{
-			PrintWriter pw = new PrintWriter(new FileWriter("result/AGgraph-.txt"+i+".txt"));
-			for(int j = i + 1; j < N; j++)
-			{		
-					Agreement_Graph[i][j]=TFIDF.Agreement(tweets[i].content, tweets[j].content, tweets, N);
-					System.out.print(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");					
-					pw.println(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");
-					
-			}
-			System.out.println();
-			pw.close();
-		}
+//		for(int i = 0; i < N-1; i++)
+//		{
+//			PrintWriter pw = new PrintWriter(new FileWriter("result/AGgraph-.txt"+i+".txt"));
+//			for(int j = i + 1; j < N; j++)
+//			{		
+//					Agreement_Graph[i][j]=TFIDF.Agreement(tweets[i].content, tweets[j].content, tweets, N);
+//					System.out.print(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");					
+//					pw.println(i+"\\"+j+"="+Agreement_Graph[i][j]+"  ");
+//					
+//			}
+//			System.out.println();
+//			pw.close();
+//		}
 		
 		System.out.println("-------------------");	
 		

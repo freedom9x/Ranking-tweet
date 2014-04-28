@@ -27,7 +27,7 @@ public class TFIDF {
     {
     	int n = 0;
     	for(Tweet t : tweets)
-    		if(Term_in_text(term, t.content))
+    		if(Term_in_text(term, ReadFile.RemoveAllSW(t.content, AG_graph.query)))
     			n = n + 1;
   	
     	double idf = Math.log(N/n);
@@ -36,6 +36,7 @@ public class TFIDF {
     
     public static boolean Term_in_text (String term, String text)
     {
+    	//String text_rmsw = ReadFile.RemoveAllSW(text, AG_graph.query);
     	List<String> list = Arrays.asList(text.split(" "));
     //	Set<String> uniqueWords =  new HashSet<String>(list);
     	if(Collections.frequency(list, term)==0) return false;
@@ -72,7 +73,7 @@ public class TFIDF {
    		for (String term : same_term) {
    			if(term.isEmpty()) continue;
 			ag_score+=  TF_term(term, text1) + TF_term(term, text2) + 
-					IDF_term(term, tweets, N)+ Tagger.Tag(term);
+					Math.pow(IDF_term(term, tweets, N), 2)+ Tagger.Tag(term);
 		}
    		//same_term.get(0).
    		return ag_score;

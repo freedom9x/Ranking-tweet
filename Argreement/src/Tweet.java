@@ -16,6 +16,7 @@ public class Tweet {
 	String hash_tag;
 	int feature_score;
 	int rank_score;
+	double total_AG = 0.0;
 	
 	/*public Tweet(String text_info)//example: text_info= "id username  follow_count friend_count img_url source retweet_count content"
 	{
@@ -117,6 +118,58 @@ public class Tweet {
 			result =result+ string+" ";
 		}
 		this.content = result;
+		
+	}
+	public static String Remove1(String content)
+	{
+		String result = "";
+		List<String> list = Arrays.asList(content.split(" "));
+		for (String string : list) {
+			if(string.contains("http://")|string.contains("@")) continue;
+			result =result+ string+" ";
+		}
+		return result;
+		
+	}
+	public static String rmv_stopword(String term) {
+		// TODO Auto-generated method stub
+		//String result = "";
+		term = term.replace("(", " ");
+		term = term.replace(")", " ");
+		term = term.replace("\"", " ");
+		term = term.replace("“", " ");
+		term = term.replace("#", " ");
+		term = term.replace(",", " ");
+		term = term.replace(".", " ");
+		term = term.replace("-", " ");
+		term = term.replace(";", " ");
+		term = term.replace(":", " ");
+		term = term.replace("!", " ");
+		term = term.replace("...", " ");
+		term = term.trim().replaceAll("\\s+", " ");
+		//remove
+//		for( int i = 0; i<this.content.length(); i++)
+//		{
+//			int temp = (int)content.charAt(i);
+//		}
+		String [] stop_words = {"a", "an", "and", "are", "as", "at", "be", "but", "by",
+				"for", "if", "in", "into", "is", "it",
+				"no", "not", "of", "on", "or", "such",
+				"that", "the", "their", "then", "there", "these",
+				"they", "this", "to", "was", "will", "with"};
+		
+		//String[] parts = this.content.split(" ");
+		
+		for (String string : stop_words) {
+			if(term.contains(string))
+			{
+				String regex = "\\s*\\b"+string+"\\b\\s*";
+				term=term.replaceAll(regex, " ");
+			}
+		}
+		//term=term.toLowerCase();
+		term=term.replaceAll("( )+", " ");
+		return term;
 		
 	}
 }
